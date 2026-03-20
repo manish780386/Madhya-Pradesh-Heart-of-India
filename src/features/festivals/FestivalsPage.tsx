@@ -1,6 +1,6 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FESTIVAL_DETAILS, FESTIVAL_STATS } from "./data/festivals.ts";
+import { FESTIVAL_DETAILS, FESTIVAL_STATS } from "./data/festivals_enhanced.ts";
 import { PageHero, SectionHeader } from "../../components/ui";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -263,7 +263,7 @@ const FestivalsPage: React.FC = () => {
                 </p>
 
                 {/* ── Two column layout: Images + Tabs ── */}
-                <div className="grid gap-8 mb-6" style={{ gridTemplateColumns: "1fr 1fr" }}>
+                <div className="grid gap-8 mb-6" style={{ gridTemplateColumns: "var(--fest-cols, 1fr)" }}>
                   {/* Left: Image Gallery */}
                   <div>
                     <ImageGallery images={fest.images} accentColor={mainColor} />
