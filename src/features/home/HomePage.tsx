@@ -74,6 +74,7 @@ const EXPLORE_CARDS = [
   { path: "/art",       icon: "🏺", label: "Art",       desc: "Tribal & folk traditions", img: "https://th.bing.com/th/id/OIP.HHB5lsvJuOmo5hVoSf8uQwHaEK" },
    { path: "/rivers",    icon: "💧", label: "Rivers",    desc: "Flowing through heritage", img: "https://tse4.mm.bing.net/th/id/OIP.LOwcU_8e5PDuphgtkIhJogHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" },
    { path: "/languages", icon: "🗣️", label: "Languages", desc: "Diverse linguistic heritage", img: "https://i.ytimg.com/vi/B8724lHyQDY/oardefault.jpg?sqp=-oaymwEkCJUDENAFSFqQAgHyq4qpAxMIARUAAAAAJQAAyEI9AICiQ3gB&rs=AOn4CLCtw4UoAvDmIbTtQK2nuGL4Ow2VIQ" },
+    { path: "/current-status",    icon: "💧", label: "Current Status ",    desc: "Find out the latest updates", img: "https://tse4.mm.bing.net/th/id/OIP.4rs-uyklXQ7ThBmWvCnQOAHaFW" },
 ];
 
 const STATS = [

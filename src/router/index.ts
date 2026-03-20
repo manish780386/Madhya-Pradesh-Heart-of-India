@@ -12,6 +12,7 @@ export const routes = [
   { path: "/plan",          Component: lazy(() => import("../features/plan/PlanPage.tsx")) },
    { path: "/rivers",        Component: lazy(() => import("../features/rivers/RiverPage.tsx")) },
    { path: "/languages",     Component: lazy(() => import("../features/languages/LanguagePage.tsx")) },
+   { path: "/current-status", Component: lazy(() => import("../features/current-status/CurrentStatusPage.tsx")) }
 ];
 
 export const NAV_ITEMS = [
@@ -25,4 +26,5 @@ export const NAV_ITEMS = [
     { label: "Rivers",    path: "/rivers",   icon: "◈" },
     { label: "Languages", path: "/languages",icon: "◈" },
   { label: "Plan Trip", path: "/plan",     icon: "◈" },
+    { label: "Current Status", path: "/current-status", icon: "◈" },
 ];
