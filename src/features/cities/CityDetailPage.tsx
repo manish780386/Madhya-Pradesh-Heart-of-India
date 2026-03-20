@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Clock,  Utensils, Star, Users, Zap, ChevronLeft, ChevronRight } from "lucide-react";
 import { CITIES } from "./data/cities";
+import { MapPin } from "lucide-react";
 
 type Tab = "story" | "highlights" | "food" | "gallery";
 

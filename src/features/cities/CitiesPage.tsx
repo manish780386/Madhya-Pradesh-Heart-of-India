@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Clock, MapPin, Search } from "lucide-react";
+import { MapPin } from "lucide-react";
+import { ArrowRight, Clock,  Search } from "lucide-react";
 import { CITIES } from "./data/cities";
 
 // Inject CSS once
