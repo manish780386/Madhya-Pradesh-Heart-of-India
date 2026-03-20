@@ -44,12 +44,16 @@ export interface WildlifeSpecies {
   scientificName: string;
   park: string;
   icon: string;
-  rarity: RarityLevel;
+  rarity: "Common" | "Uncommon" | "Rare" | "Critically Rare";
   desc: string;
   fact: string;
   color: string;
+  // Extended fields (added in enhanced version)
+  behaviors?: string[];
+  bestSpot?: string;
+  threatLevel?: string;
 }
-
+ 
 export interface NationalPark {
   id: string;
   name: string;
@@ -60,8 +64,17 @@ export interface NationalPark {
   icon: string;
   gradient: string;
   species: string[];
+  // Extended fields (added in enhanced version)
+  altitude?: string;
+  rivers?: string;
+  zones?: string[];
+  bestTime?: string;
+  peakSeason?: string;
+  safariTip?: string;
+  funFact?: string;
+  conservation?: string;
 }
-
+ 
 // ─── Festivals ─────────────────────────────────────────────────────────────
 
 export interface Festival {

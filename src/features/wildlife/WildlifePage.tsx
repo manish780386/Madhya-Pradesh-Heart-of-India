@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   WILDLIFE_SPECIES,
@@ -48,9 +48,9 @@ const RARITY: Record<string, string> = {
 };
 
 const VERDICT_STYLE = {
-  best: { color: "#52B788", label: "BEST TIME", bg: "rgba(82,183,136,0.1)", border: "rgba(82,183,136,0.25)" },
-  good: { color: "#F4A261", label: "GOOD TIME", bg: "rgba(244,162,97,0.1)", border: "rgba(244,162,97,0.25)" },
-  avoid: { color: "#E63946", label: "PARKS CLOSED", bg: "rgba(230,57,70,0.08)", border: "rgba(230,57,70,0.2)" },
+  best:  { color: "#52B788", label: "BEST TIME",    bg: "rgba(82,183,136,0.1)",  border: "rgba(82,183,136,0.25)"  },
+  good:  { color: "#F4A261", label: "GOOD TIME",    bg: "rgba(244,162,97,0.1)",  border: "rgba(244,162,97,0.25)"  },
+  avoid: { color: "#E63946", label: "PARKS CLOSED", bg: "rgba(230,57,70,0.08)",  border: "rgba(230,57,70,0.2)"    },
 };
 
 // ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
@@ -157,7 +157,6 @@ const RhythmRow: React.FC<{ item: typeof DAILY_RHYTHM[0]; index: number }> = ({ 
       className="flex gap-4 cursor-pointer group"
       onClick={() => setOpen(!open)}
     >
-      {/* Timeline spine */}
       <div className="flex flex-col items-center flex-shrink-0 w-10">
         <div className="w-8 h-8 rounded-full flex items-center justify-center text-base flex-shrink-0 transition-all duration-300"
           style={{
@@ -170,7 +169,6 @@ const RhythmRow: React.FC<{ item: typeof DAILY_RHYTHM[0]; index: number }> = ({ 
           <div className="flex-1 w-px my-1" style={{ background: "rgba(82,183,136,0.12)" }} />
         )}
       </div>
-      {/* Content */}
       <div className="flex-1 pb-6">
         <div className="flex items-center gap-3 mb-1">
           <span className="font-mono-mp text-[10px]" style={{ color: "#52B788" }}>{item.time}</span>
@@ -216,7 +214,7 @@ const WildlifePage: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-6 py-20">
 
-        {/* ─── CONSERVATION STATS ─────────────────────────────────── */}
+        {/* CONSERVATION STATS */}
         <SectionHeader badge="By The Numbers" title="Why MP Is" titleAccent="India's Tiger Country" />
         <div className="grid gap-4 mb-20" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))" }}>
           {CONSERVATION_STATS.map((stat, i) => (
@@ -224,10 +222,8 @@ const WildlifePage: React.FC = () => {
           ))}
         </div>
 
-        {/* ─── SAFARI SIMULATION ──────────────────────────────────── */}
+        {/* SAFARI SIMULATION */}
         <SectionHeader badge="Safari Experience" title="Walk Through" titleAccent="the Jungle" />
-
-        {/* Phase stepper */}
         <div className="relative flex mb-10">
           <div className="absolute top-5 h-px"
             style={{ left: "12.5%", right: "12.5%", background: "linear-gradient(90deg,transparent,rgba(82,183,136,0.35),transparent)" }} />
@@ -262,11 +258,10 @@ const WildlifePage: React.FC = () => {
           </span>
         </motion.div>
 
-        {/* Step dots */}
         <div className="flex justify-center gap-2 mb-20">
           {PHASES.map((_, i) => (
             <button key={i} onClick={() => setPhase(i)}
-              className="w-1.5 rounded-full border-none cursor-pointer transition-all duration-300"
+              className="rounded-full border-none cursor-pointer transition-all duration-300"
               style={{
                 height: "6px",
                 width: phase === i ? "28px" : "6px",
@@ -275,22 +270,22 @@ const WildlifePage: React.FC = () => {
           ))}
         </div>
 
-        {/* ─── DAILY RHYTHM ───────────────────────────────────────── */}
+        {/* DAILY RHYTHM */}
         <GoldDivider />
         <SectionHeader badge="Field Guide" title="A Day in the" titleAccent="Forest" />
         <div className="mb-20 max-w-2xl">
           <p className="font-sans text-[13px] text-white/40 mb-8 leading-[1.8]">
-            Wildlife doesn't follow tourist schedules. Understanding the jungle's internal clock is what separates good sightings from great ones. Tap each time window to read what the forest is actually doing.
+            Wildlife doesn't follow tourist schedules. Tap each time window to read what the forest is actually doing.
           </p>
           {DAILY_RHYTHM.map((item, i) => (
             <RhythmRow key={item.time} item={item} index={i} />
           ))}
         </div>
 
-        {/* ─── SPECIES ────────────────────────────────────────────── */}
+        {/* SPECIES */}
         <SectionHeader badge="Wildlife" title="Who You Might" titleAccent="Encounter" />
         <p className="font-sans text-[13px] text-white/40 mb-8 leading-[1.8] max-w-2xl">
-          Ten species across six reserves — from the tiger at the apex to the gharial holding the bottom of a river food chain unchanged since the Cretaceous. Tap any species for full field detail.
+          Ten species across six reserves. Tap any species for full field detail.
         </p>
 
         <div className="grid gap-4 mb-20" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(320px,1fr))" }}>
@@ -336,33 +331,41 @@ const WildlifePage: React.FC = () => {
                         style={{ borderTop: "1px solid rgba(82,183,136,0.12)" }}
                       >
                         {/* Behaviors */}
-                        <div className="mb-3">
-                          <div className="font-sans text-[9px] uppercase tracking-widest mb-2" style={{ color: "rgba(82,183,136,0.5)" }}>
-                            Observed Behaviours
+                        {w.behaviors && w.behaviors.length > 0 && (
+                          <div className="mb-3">
+                            <div className="font-sans text-[9px] uppercase tracking-widest mb-2"
+                              style={{ color: "rgba(82,183,136,0.5)" }}>
+                              Observed Behaviours
+                            </div>
+                            <div className="flex flex-col gap-1.5">
+                              {w.behaviors.map((b, j) => (
+                                <div key={j} className="flex items-start gap-2">
+                                  <span className="text-[10px] mt-0.5" style={{ color: "#52B788" }}>◆</span>
+                                  <span className="font-sans text-[11px] text-white/50">{b}</span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                          <div className="flex flex-col gap-1.5">
-                            {(w.behaviors || []).map((b: string, j: number) => (
-                              <div key={j} className="flex items-start gap-2">
-                                <span className="text-[10px] mt-0.5" style={{ color: "#52B788" }}>◆</span>
-                                <span className="font-sans text-[11px] text-white/50">{b}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
+                        )}
 
                         {/* Best spot */}
-                        <div className="p-3 rounded-xl mb-3"
-                          style={{ background: "rgba(82,183,136,0.06)", border: "1px solid rgba(82,183,136,0.1)" }}>
-                          <div className="font-sans text-[9px] uppercase tracking-widest mb-1" style={{ color: "rgba(82,183,136,0.5)" }}>
-                            Best Sighting Spot
+                        {w.bestSpot && (
+                          <div className="p-3 rounded-xl mb-3"
+                            style={{ background: "rgba(82,183,136,0.06)", border: "1px solid rgba(82,183,136,0.1)" }}>
+                            <div className="font-sans text-[9px] uppercase tracking-widest mb-1"
+                              style={{ color: "rgba(82,183,136,0.5)" }}>
+                              Best Sighting Spot
+                            </div>
+                            <div className="font-sans text-[11px] text-white/60">{w.bestSpot}</div>
                           </div>
-                          <div className="font-sans text-[11px] text-white/60">{w.bestSpot}</div>
-                        </div>
+                        )}
 
                         {/* Threat */}
-                        <div className="font-sans text-[10px] text-white/30 italic leading-[1.5]">
-                          ⚠ {w.threatLevel}
-                        </div>
+                        {w.threatLevel && (
+                          <div className="font-sans text-[10px] text-white/30 italic leading-[1.5] mb-3">
+                            ⚠ {w.threatLevel}
+                          </div>
+                        )}
 
                         {/* Fact */}
                         <div className="mt-3 pt-3 font-sans text-[11px] italic leading-[1.6]"
@@ -380,9 +383,8 @@ const WildlifePage: React.FC = () => {
 
         <GoldDivider />
 
-        {/* ─── NATIONAL PARKS ─────────────────────────────────────── */}
+        {/* NATIONAL PARKS */}
         <SectionHeader badge="Protected Areas" title="National Parks" titleAccent="of MP" />
-
         <div className="grid gap-4 mb-20" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))" }}>
           {NATIONAL_PARKS.map((park, i) => (
             <motion.div key={park.id}
@@ -391,7 +393,7 @@ const WildlifePage: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.07 }}
               onClick={() => setActivePark(activePark === park.id ? null : park.id)}
-              className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-350"
+              className="rounded-2xl overflow-hidden cursor-pointer transition-all duration-300"
               style={{
                 background: park.gradient,
                 border: activePark === park.id ? "1px solid rgba(82,183,136,0.4)" : "1px solid rgba(255,255,255,0.07)",
@@ -399,7 +401,6 @@ const WildlifePage: React.FC = () => {
                 boxShadow: activePark === park.id ? "0 20px 50px rgba(0,0,0,0.5)" : "none",
               }}>
               <div className="p-5">
-                {/* Header */}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">{park.icon}</span>
                   <div className="flex-1">
@@ -425,19 +426,14 @@ const WildlifePage: React.FC = () => {
                       className="pt-3"
                       style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
                     >
-                      {/* Known for */}
-                      <p className="font-sans text-[12px] text-white/60 mb-4 leading-[1.7]">
-                        {park.knownFor}
-                      </p>
+                      <p className="font-sans text-[12px] text-white/60 mb-4 leading-[1.7]">{park.knownFor}</p>
 
-                      {/* Zones */}
                       {park.zones && (
                         <div className="mb-4">
-                          <div className="font-sans text-[9px] uppercase tracking-widest mb-2" style={{ color: "rgba(82,183,136,0.5)" }}>
-                            Safari Zones
-                          </div>
+                          <div className="font-sans text-[9px] uppercase tracking-widest mb-2"
+                            style={{ color: "rgba(82,183,136,0.5)" }}>Safari Zones</div>
                           <div className="flex flex-col gap-1.5">
-                            {park.zones.map((z: string) => (
+                            {park.zones.map((z) => (
                               <div key={z} className="flex items-center gap-2">
                                 <span className="text-[10px]" style={{ color: "#52B788" }}>▸</span>
                                 <span className="font-sans text-[11px] text-white/55">{z}</span>
@@ -447,13 +443,11 @@ const WildlifePage: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Species tags */}
                       <div className="mb-4">
-                        <div className="font-sans text-[9px] uppercase tracking-widest mb-2" style={{ color: "rgba(82,183,136,0.5)" }}>
-                          Key Species
-                        </div>
+                        <div className="font-sans text-[9px] uppercase tracking-widest mb-2"
+                          style={{ color: "rgba(82,183,136,0.5)" }}>Key Species</div>
                         <div className="flex gap-2 flex-wrap">
-                          {park.species.map((s: string) => (
+                          {park.species.map((s) => (
                             <span key={s} className="font-sans text-[10px] px-2 py-0.5 rounded-full"
                               style={{ background: "rgba(82,183,136,0.12)", color: "#52B788", border: "1px solid rgba(82,183,136,0.2)" }}>
                               {s.split(" (")[0]}
@@ -462,27 +456,21 @@ const WildlifePage: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Safari tip */}
                       {park.safariTip && (
                         <div className="p-3 rounded-xl mb-3"
                           style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                          <div className="font-sans text-[9px] uppercase tracking-widest mb-1" style={{ color: "rgba(244,162,97,0.6)" }}>
-                            Safari Tip
-                          </div>
-                          <div className="font-sans text-[11px] text-white/55 leading-[1.6]">
-                            {park.safariTip}
-                          </div>
+                          <div className="font-sans text-[9px] uppercase tracking-widest mb-1"
+                            style={{ color: "rgba(244,162,97,0.6)" }}>Safari Tip</div>
+                          <div className="font-sans text-[11px] text-white/55 leading-[1.6]">{park.safariTip}</div>
                         </div>
                       )}
 
-                      {/* Fun fact */}
                       {park.funFact && (
-                        <p className="font-sans text-[11px] italic text-white/35 leading-[1.6]">
+                        <p className="font-sans text-[11px] italic text-white/35 leading-[1.6] mb-3">
                           "{park.funFact}"
                         </p>
                       )}
 
-                      {/* Altitude & rivers */}
                       <div className="flex gap-2 mt-3 flex-wrap">
                         {park.altitude && <DataPill label="Altitude" value={park.altitude.split(" (")[0]} />}
                         {park.rivers && <DataPill label="Rivers" value={park.rivers.split(",")[0]} />}
@@ -497,29 +485,25 @@ const WildlifePage: React.FC = () => {
 
         <GoldDivider />
 
-        {/* ─── SEASONAL GUIDE ─────────────────────────────────────── */}
+        {/* SEASONAL GUIDE */}
         <SectionHeader badge="When to Go" title="The Seasonal" titleAccent="Field Guide" />
         <p className="font-sans text-[13px] text-white/40 mb-8 leading-[1.8] max-w-2xl">
-          Indian wildlife parks are not year-round destinations — the monsoon closure is what makes them work. Getting your timing right is the difference between 8 sightings and 1.
+          Indian wildlife parks are not year-round destinations — the monsoon closure is what makes them work.
         </p>
         <div className="grid gap-4 mb-20" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))" }}>
-          {SEASONAL_GUIDE.map((s, i) => (
-            <SeasonCard key={s.season} s={s} index={i} />
-          ))}
+          {SEASONAL_GUIDE.map((s, i) => <SeasonCard key={s.season} s={s} index={i} />)}
         </div>
 
-        {/* ─── JUNGLE RULES ───────────────────────────────────────── */}
+        {/* JUNGLE RULES */}
         <SectionHeader badge="Before You Go" title="Rules of the" titleAccent="Jungle" />
         <p className="font-sans text-[13px] text-white/40 mb-8 leading-[1.8] max-w-2xl">
-          Six things that experienced naturalists wish every visitor knew before entering. Tap each to understand the reasoning behind the rule — the jungle makes more sense when you understand its logic.
+          Six things naturalists wish every visitor knew. Tap each to understand the reasoning.
         </p>
         <div className="grid gap-3 mb-20" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))" }}>
-          {JUNGLE_RULES.map((rule, i) => (
-            <RuleCard key={rule.rule} rule={rule} index={i} />
-          ))}
+          {JUNGLE_RULES.map((rule, i) => <RuleCard key={rule.rule} rule={rule} index={i} />)}
         </div>
 
-        {/* ─── SAFARI TIPS ────────────────────────────────────────── */}
+        {/* SAFARI TIPS */}
         <SectionHeader badge="Practical Guide" title="Safari" titleAccent="Essentials" />
         <div className="grid gap-4 mb-20" style={{ gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))" }}>
           {SAFARI_TIPS.map((tip, i) => (
@@ -540,13 +524,9 @@ const WildlifePage: React.FC = () => {
           ))}
         </div>
 
-        {/* ─── FOOTER QUOTE ────────────────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center py-16"
-        >
+        {/* FOOTER QUOTE */}
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          className="text-center py-16">
           <div className="w-12 h-px mx-auto mb-8" style={{ background: "rgba(82,183,136,0.3)" }} />
           <p className="font-display italic text-2xl text-white/25 max-w-2xl mx-auto leading-[1.8]">
             "The tiger can never be tamed. It can only be lived alongside — with enough respect to survive the encounter."

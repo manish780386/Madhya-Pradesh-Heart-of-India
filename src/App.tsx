@@ -8,7 +8,7 @@ import { routes } from "./router";
 
 const NotFoundPage = lazy(() => import("./features/home/NotFoundPage.tsx"));
 
-/* Page transition wrapper */
+/* ── Page transition wrapper ─────────────────────────────────────────────── */
 const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
@@ -20,64 +20,80 @@ const PageTransition: React.FC<{ children: React.ReactNode }> = ({ children }) =
   </motion.div>
 );
 
-/* Scroll to top on navigation */
+/* ── Scroll to top on navigation ─────────────────────────────────────────── */
 const ScrollReset: React.FC = () => {
   const { pathname } = useLocation();
-  React.useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior }); }, [pathname]);
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [pathname]);
   return null;
 };
 
-/* Page loader */
+/* ── Page loader ─────────────────────────────────────────────────────────── */
 const Loader: React.FC = () => (
   <div className="min-h-screen flex items-center justify-center" style={{ background: "#06060E" }}>
     <div className="flex flex-col items-center gap-4">
-      <div className="w-10 h-10 rounded-full border-2 animate-spin"
-        style={{ borderColor: "rgba(201,168,76,0.2)", borderTopColor: "#C9A84C" }} />
-      <span className="font-mono-mp text-[10px] text-white/25 tracking-[0.3em] uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+      <div
+        className="w-10 h-10 rounded-full border-2 animate-spin"
+        style={{ borderColor: "rgba(201,168,76,0.2)", borderTopColor: "#C9A84C" }}
+      />
+      <span
+        className="font-mono-mp text-[10px] text-white/25 tracking-[0.3em] uppercase"
+        style={{ fontFamily: "'JetBrains Mono', monospace" }}
+      >
         Loading
       </span>
     </div>
   </div>
 );
 
-/* Animated routes */
+/* ── Animated routes ─────────────────────────────────────────────────────── */
 const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         {routes.map(({ path, Component }) => (
-          <Route key={path} path={path} element={
+          <Route
+            key={path}
+            path={path}
+            element={
+              <PageTransition>
+                <Suspense fallback={<Loader />}>
+                  <Component />
+                </Suspense>
+              </PageTransition>
+            }
+          />
+        ))}
+        <Route
+          path="*"
+          element={
             <PageTransition>
               <Suspense fallback={<Loader />}>
-                <Component />
+                <NotFoundPage />
               </Suspense>
             </PageTransition>
-          } />
-        ))}
-        <Route path="*" element={
-          <PageTransition>
-            <Suspense fallback={<Loader />}>
-              <NotFoundPage />
-            </Suspense>
-          </PageTransition>
-        } />
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
 };
 
+/* ── Root App ────────────────────────────────────────────────────────────── */
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  // darkMode state kept for future use — NOT passed to Navbar (it doesn't accept it)
+  const [_darkMode] = useState(true);
 
   return (
-    <div className={darkMode ? "dark" : ""}>
+    <div className="dark">
       <div style={{ background: "#06060E", minHeight: "100vh" }}>
         <BrowserRouter>
           <ScrollReset />
           <ScrollProgress />
-          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-          {/* Extra top padding so content clears the navbar */}
+          {/* Navbar takes NO props — it manages its own state internally */}
+          <Navbar />
           <div className="pt-[72px]">
             <AnimatedRoutes />
           </div>
