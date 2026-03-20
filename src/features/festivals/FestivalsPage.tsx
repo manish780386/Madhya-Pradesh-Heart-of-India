@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FESTIVAL_DETAILS, FESTIVAL_STATS } from "./data/festivals_enhanced.ts";
+import { FESTIVAL_DETAILS, FESTIVAL_STATS } from "./data/festivals.ts";
 import { PageHero, SectionHeader } from "../../components/ui";
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
