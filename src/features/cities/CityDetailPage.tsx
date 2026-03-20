@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Clock, MapPin, Utensils, Star, Users, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, Clock,  Utensils, Star, Users, Zap, ChevronLeft, ChevronRight } from "lucide-react";
 import { CITIES } from "./data/cities";
 
 type Tab = "story" | "highlights" | "food" | "gallery";

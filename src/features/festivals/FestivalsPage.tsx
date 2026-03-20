@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FESTIVAL_DETAILS, FESTIVAL_STATS } from "./data/festivals.ts";
 import { PageHero, SectionHeader } from "../../components/ui";

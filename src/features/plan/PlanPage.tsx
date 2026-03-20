@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart, Trash2, ArrowRight, Sun, Plane, Hotel,
   Camera, Wallet, MessageCircle, MapPin, Clock,
-  ChevronDown, ChevronUp, Star, Zap,
+  ChevronDown,  Star, Zap,
 } from "lucide-react";
 import { CITIES } from "../cities/data/cities";
 import { useWishlist } from "../../hooks";

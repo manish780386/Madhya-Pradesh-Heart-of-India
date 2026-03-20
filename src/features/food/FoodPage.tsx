@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Leaf, Flame, ChevronDown, ChevronUp, MapPin, Clock, Banknote, Lightbulb } from "lucide-react";
+import { Leaf, Flame, ChevronUp, MapPin, Clock, Banknote, Lightbulb } from "lucide-react";
 import { FOOD_ITEMS, FOOD_STATS, WHERE_TO_EAT } from "./data/food.ts";
 import { PageHero, SectionHeader, Badge } from "../../components/ui";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin, Mail, Instagram, Youtube, Waves, Languages, ArrowUpRight } from "lucide-react";
-import { NAV_ITEMS } from "../../router";
+
 
 // ─── Footer stats ─────────────────────────────────────────────────────────────
 const STATS = [

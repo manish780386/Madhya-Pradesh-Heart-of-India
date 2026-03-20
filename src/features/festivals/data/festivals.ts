@@ -1,4 +1,4 @@
-import type { Festival } from "../../../types";
+
 
 export interface FestivalDetail {
   id: string;
